@@ -60,10 +60,8 @@ body {
 }
 
 .app.mouseup {
-	background-color:green;
 }
 .app.mousedown {
-	background-color:red;
 	background:url(../img/After.jpg) no-repeat center top;
 	background-size:100%;
 }
