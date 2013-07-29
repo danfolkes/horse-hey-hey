@@ -38,18 +38,18 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
 		var my_media = new Media("audio/HeyHey.mp3", onSuccess, onError);
 		
 		//my_media.play();
+		$(".listening").hide();
 		
         listeningElement.setAttribute('style', 'display:none;');
 		
-		$(".clickable").mouseup(function(){
+		$(".clickable").mouseup(function(){ 
 		  $(".app").removeClass("mousedown").addClass("mouseup");
 		  my_media.stop();
-		}).mousedown(function(){
+		});
+		$(".clickable").on('mousedown' ,function(){
 		  $(".app").removeClass("mouseup").addClass("mousedown");
 		  my_media.play();
 		});
