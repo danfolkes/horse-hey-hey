@@ -38,16 +38,19 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		var my_media = new Media("audio/HeyHey.mp3", onSuccess, onError);
+		var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
+		var fname = fnames[Math.floor(Math.random() * fnames.length)];
+		var my_media = new Media();
+		my_media = pickNew(my_media);
 		
 		//my_media.play();
 		$(".listening").hide();
 		
-        listeningElement.setAttribute('style', 'display:none;');
 		
 		$(".clickable").mouseup(function(){ 
 		  $(".app").removeClass("mousedown").addClass("mouseup");
 		  my_media.stop();
+		  my_media = pickNew(my_media);
 		});
 		$(".clickable").on('mousedown' ,function(){
 		  $(".app").removeClass("mouseup").addClass("mousedown");
@@ -62,4 +65,10 @@ function onSuccess() {
 }
 function onError(error) {
 	//alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+}
+function pickNew(my_media) {
+	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
+	var fname = fnames[Math.floor(Math.random() * fnames.length)];
+	my_media = new Media("audio/" + fname + ".mp3", onSuccess, onError);
+	return my_media;
 }
