@@ -43,7 +43,7 @@ var app = {
 		var my_media = new Media();
 		my_media = pickNew(my_media);
 		
-		//my_media.play();
+		my_media.play();
 		$(".listening").hide();
 		
 		
