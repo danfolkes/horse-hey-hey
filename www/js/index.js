@@ -47,12 +47,12 @@ var app = {
 		$(".listening").hide();
 		
 		
-		$(".clickable").mouseup(function(){ 
+		$(".clickable").on('mouseup, touchend' ,function(){ 
 		  $(".app").removeClass("mousedown").addClass("mouseup");
 		  my_media.stop();
 		  my_media = pickNew(my_media);
 		});
-		$(".clickable").on('mousedown' ,function(){
+		$(".clickable").on('mousedown, touchstart' ,function(){
 		  $(".app").removeClass("mouseup").addClass("mousedown");
 		  my_media.play();
 		});
