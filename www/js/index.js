@@ -38,8 +38,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
-		var fname = fnames[Math.floor(Math.random() * fnames.length)];
 		playAudio();
 		$(".listening").hide();
 		
@@ -55,13 +53,6 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
-function onSuccess() {
-	console.log("playAudio():Audio Success");
-}
-function onError(error) {
-	//alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
-}
-
 
 function playAudio() {
 	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
@@ -69,7 +60,8 @@ function playAudio() {
 	fname = "audio/" + fname + ".mp3";
 	console.log("fname: " + fname);
     // HTML5 Audio
-    if (typeof Audio != "undefined") { 
+	//	(typeof Audio != "undefined") { 
+    if (false)
         new Audio(fname).play();
 
     // Phonegap media
