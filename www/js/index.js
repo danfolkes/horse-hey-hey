@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -39,11 +40,26 @@ var app = {
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
+		var my_media = new Media("audio/HeyHey.mp3", onSuccess, onError);
+		
+		//my_media.play();
+		
         listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
+		
+		$(".clickable").mouseup(function(){
+		  $(".app").removeClass("mousedown").addClass("mouseup");
+		  my_media.stop();
+		}).mousedown(function(){
+		  $(".app").removeClass("mouseup").addClass("mousedown");
+		  my_media.play();
+		});
+		
         console.log('Received Event: ' + id);
     }
 };
+function onSuccess() {
+	console.log("playAudio():Audio Success");
+}
+function onError(error) {
+	//alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+}

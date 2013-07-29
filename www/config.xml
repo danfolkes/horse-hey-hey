@@ -6,14 +6,14 @@
         id        = "com.phonegap.hello-world"
         version   = "1.0.0">
 
-    <name>HelloWorld</name>
+    <name>HorseHeyHey</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+        HorseHeyHey
     </description>
 
-    <author href="http://phonegap.com" email="support@phonegap.com">
-        PhoneGap Team
+    <author href="http://danfolkes.com" email="">
+        Daniel Folkes
     </author>
 
     <!--
@@ -94,5 +94,6 @@
         <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
         <access origin="http://phonegap.com" browserOnly="true" /> - only allows http://phonegap.com to be opened by the child browser.
     -->
-
+	<plugin name="Media" value="org.apache.cordova.AudioHandler" />
+	
 </widget>
