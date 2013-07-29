@@ -40,21 +40,16 @@ var app = {
     receivedEvent: function(id) {
 		var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
 		var fname = fnames[Math.floor(Math.random() * fnames.length)];
-		var my_media = new Media();
-		my_media = pickNew(my_media);
-		
-		my_media.play();
+		playAudio();
 		$(".listening").hide();
 		
 		
 		$(".clickable").on('mouseup, touchend' ,function(){ 
 		  $(".app").removeClass("mousedown").addClass("mouseup");
-		  my_media.stop();
-		  my_media = pickNew(my_media);
 		});
 		$(".clickable").on('mousedown, touchstart' ,function(){
 		  $(".app").removeClass("mouseup").addClass("mousedown");
-		  my_media.play();
+		  playAudio();
 		});
 		
         console.log('Received Event: ' + id);
@@ -66,9 +61,36 @@ function onSuccess() {
 function onError(error) {
 	//alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
-function pickNew(my_media) {
+
+
+function playAudio() {
 	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
 	var fname = fnames[Math.floor(Math.random() * fnames.length)];
-	my_media = new Media("/audio/" + fname + ".mp3", onSuccess, onError);
-	return my_media;
+	fname = "audio/" + fname + ".mp3";
+	console.log("fname: " + fname);
+    // HTML5 Audio
+    if (typeof Audio != "undefined") { 
+        new Audio(fname).play();
+
+    // Phonegap media
+    } else if (typeof device != "undefined") {
+		console.log("Phonegap media");
+        // Android needs the search path explicitly specified
+        if (device.platform == 'Android') {
+            fname = '/android_asset/www/' + fname;
+        }
+		console.log("fname: " + fname);
+        var mediaRes = new Media(fname,
+            function onSuccess() {
+                // release the media resource once finished playing
+                mediaRes.release();
+            },
+            function onError(e){
+                console.log("error playing sound: " + JSON.stringify(e));
+            });
+        mediaRes.play();
+
+    } else {
+        console.log("no sound API to play: " + fname);
+    }
 }
