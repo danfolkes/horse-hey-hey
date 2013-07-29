@@ -69,6 +69,6 @@ function onError(error) {
 function pickNew(my_media) {
 	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
 	var fname = fnames[Math.floor(Math.random() * fnames.length)];
-	my_media = new Media("audio/" + fname + ".mp3", onSuccess, onError);
+	my_media = new Media("/audio/" + fname + ".mp3", onSuccess, onError);
 	return my_media;
 }
