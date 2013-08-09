@@ -38,18 +38,19 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		playAudio();
+		//playAudio();
 		$(".listening").hide();
 		
-		
+		console.log("receivedEvent");
 		$(".clickable").on('mouseup, touchend' ,function(){ 
+			console.log("mouseup, touchend");
 		  $(".app").removeClass("mousedown").addClass("mouseup");
 		});
 		$(".clickable").on('mousedown, touchstart' ,function(){
+			console.log("mousedown, touchstart");
 		  $(".app").removeClass("mouseup").addClass("mousedown");
 		  playAudio();
 		});
-		
         console.log('Received Event: ' + id);
     }
 };
@@ -58,7 +59,7 @@ function playAudio() {
 	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
 	var fname = fnames[Math.floor(Math.random() * fnames.length)];
 	fname = "audio/" + fname + ".mp3";
-	console.log("fname: " + fname);
+	console.log("fname1: " + fname);
     // HTML5 Audio
 	//	(typeof Audio != "undefined") { 
     if (false)
@@ -67,20 +68,23 @@ function playAudio() {
     // Phonegap media
     } else if (typeof device != "undefined") {
 		console.log("Phonegap media");
+		console.log("device.platform:" + device.platform);
         // Android needs the search path explicitly specified
         if (device.platform == 'Android') {
             fname = '/android_asset/www/' + fname;
         }
-		console.log("fname: " + fname);
+		console.log("fname2: " + fname);
         var mediaRes = new Media(fname,
             function onSuccess() {
                 // release the media resource once finished playing
                 mediaRes.release();
+				console.log("mediaRes.release()" );
             },
             function onError(e){
                 console.log("error playing sound: " + JSON.stringify(e));
             });
         mediaRes.play();
+		console.log("mediaRes.play()");
 
     } else {
         console.log("no sound API to play: " + fname);
