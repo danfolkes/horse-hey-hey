@@ -65,6 +65,9 @@ function playAudio() {
     if (typeof Audio != "undefined") { 
 		audio = new Audio();
 		audio.src = fname;
+		if ((typeof device != "undefined")&&(device.platform == 'Android')) {
+            fname = '/android_asset/www/' + fname;
+        }
 		audio.addEventListener('error', function (e) { 
 			console.log("error playing audio: " + JSON.stringify(e));
 		}, false);
