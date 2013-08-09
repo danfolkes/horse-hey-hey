@@ -62,7 +62,7 @@ function playAudio() {
 	console.log("fname1: " + fname);
     // HTML5 Audio
 	//	(typeof Audio != "undefined") { 
-    if (false)
+    if (false) { 
         new Audio(fname).play();
 
     // Phonegap media
