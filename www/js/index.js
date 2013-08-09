@@ -56,16 +56,20 @@ var app = {
 };
 function playAudio() { 
 	var fname = "audio/Stoooop.mp3";
-	if ((typeof device != "undefined")&&(device.platform == 'Android')) {
-            fname = '/android_asset/www/' + fname;
-    }
+	if (device.platform == 'Android') {
+		fname = '/android_asset/www/' + fname;
+	}
 	console.log("fname2: " + fname);
 	
-	var mediaRes = new Media(fname);
-	
+	var mediaRes = new Media(fname,success,error_error);
 	mediaRes.play();
 	console.log("mediaRes.play()");
 
+}
+function success() { console.log("working");} 
+function error_error(e) {
+	console.log("e.message: " + e);
+	console.log("e.message: " + e.message);
 }
 /*
 function playAudio() {
