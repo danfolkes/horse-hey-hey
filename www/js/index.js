@@ -42,11 +42,11 @@ var app = {
 		$(".listening").hide();
 		
 		console.log("receivedEvent");
-		$(".clickable").on('mouseup, touchend' ,function(){ 
+		$(".clickable").on('touchend' ,function(){ 
 			console.log("mouseup, touchend");
 		  $(".app").removeClass("mousedown").addClass("mouseup");
 		});
-		$(".clickable").on('mousedown, touchstart' ,function(){
+		$(".clickable").on('touchstart' ,function(){
 			console.log("mousedown, touchstart");
 		  $(".app").removeClass("mouseup").addClass("mousedown");
 		  playAudio();
@@ -62,10 +62,9 @@ function playAudio() {
 	console.log("fname1: " + fname);
     // HTML5 Audio
 	//	(typeof Audio != "undefined") { 
-    if (false) { 
+    if (typeof Audio != "undefined") { 
         new Audio(fname).play();
-
-    // Phonegap media
+		console.log("new Audio(fname).play();");
     } else if (typeof device != "undefined") {
 		console.log("Phonegap media");
 		console.log("device.platform:" + device.platform);
