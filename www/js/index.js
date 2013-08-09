@@ -54,12 +54,25 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+function playAudio() { 
+	var fname = "audio/Stoooop.mp3";
+	if ((typeof device != "undefined")&&(device.platform == 'Android')) {
+            fname = '/android_asset/www/' + fname;
+    }
+	console.log("fname2: " + fname);
+	
+	var mediaRes = new Media(fname);
+	
+	mediaRes.play();
+	console.log("mediaRes.play()");
 
+}
+/*
 function playAudio() {
 	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
 	var fname = fnames[Math.floor(Math.random() * fnames.length)];
 	fname = "audio/" + fname + ".mp3";
-	console.log("fname1: " + fname);
+	
     // HTML5 Audio
 	//	(typeof Audio != "undefined") { 
     if (typeof Audio != "undefined") { 
@@ -71,6 +84,8 @@ function playAudio() {
 		audio.addEventListener('error', function (e) { 
 			console.log("error playing audio: " + JSON.stringify(e));
 		}, false);
+		console.log("fname1: " + fname);
+		
 		audio.play();
 		
 		console.log("new Audio(fname).play();");
@@ -81,7 +96,7 @@ function playAudio() {
         if (device.platform == 'Android') {
             fname = '/android_asset/www/' + fname;
         }
-		console.log("fname2: " + fname);
+		
         var mediaRes = new Media(fname,
             function onSuccess() {
                 // release the media resource once finished playing
@@ -91,6 +106,7 @@ function playAudio() {
             function onError(e){
                 console.log("error playing sound: " + JSON.stringify(e));
             });
+		console.log("fname2: " + fname);
         mediaRes.play();
 		console.log("mediaRes.play()");
 
@@ -98,3 +114,4 @@ function playAudio() {
         console.log("no sound API to play: " + fname);
     }
 }
+*/
