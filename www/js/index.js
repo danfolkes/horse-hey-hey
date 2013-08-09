@@ -43,11 +43,11 @@ var app = {
 		
 		console.log("receivedEvent");
 		$(".clickable").on('touchend' ,function(){ 
-			console.log("mouseup, touchend");
+			console.log("touchend");
 		  $(".app").removeClass("mousedown").addClass("mouseup");
 		});
 		$(".clickable").on('touchstart' ,function(){
-			console.log("mousedown, touchstart");
+			console.log("touchstart");
 		  $(".app").removeClass("mouseup").addClass("mousedown");
 		  playAudio();
 		});
@@ -63,7 +63,13 @@ function playAudio() {
     // HTML5 Audio
 	//	(typeof Audio != "undefined") { 
     if (typeof Audio != "undefined") { 
-        new Audio(fname).play();
+		audio = new Audio();
+		audio.src = fname;
+		audio.addEventListener('error', function (e) { 
+			console.log("error playing audio: " + JSON.stringify(e));
+		}, false);
+		audio.play();
+		
 		console.log("new Audio(fname).play();");
     } else if (typeof device != "undefined") {
 		console.log("Phonegap media");
