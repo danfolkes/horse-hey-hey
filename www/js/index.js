@@ -61,9 +61,9 @@ var app = {
 function playAudio() { 
 	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
 	var fname = fnames[Math.floor(Math.random() * fnames.length)];
-	//var the_video = document.getElementById("htmlvideo_"+fname);
+	var the_video = document.getElementById("htmlvideo_HeyQuitIt");
 	//the_video.load();
-    //the_video.play();
+    the_video.play();
 	console.log("mediaRes.play()" + fname);
 }
 /*
