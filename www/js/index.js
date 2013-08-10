@@ -65,7 +65,6 @@ function playAudio() {
 	the_video.load();
     the_video.play();
 	console.log("mediaRes.play()");
-
 }
 /*
 function success() { console.log("working");} 
