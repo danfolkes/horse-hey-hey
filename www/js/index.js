@@ -38,12 +38,12 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-		//playAudio();
+		playAudio();
 		
 		$(".listening").hide();
 		
 		console.log("receivedEvent");
-		/*
+		
 		$(".clickable").on('touchend' ,function(){ 
 			console.log("touchend");
 		  $(".app").removeClass("mousedown").addClass("mouseup");
@@ -53,23 +53,21 @@ var app = {
 		  $(".app").removeClass("mouseup").addClass("mousedown");
 		  playAudio();
 		});
-		*/
+		
         console.log('Received Event: ' + id);
     }
 };
-/*
+
 function playAudio() { 
-	var fname = "audio/Stoooop.mp3";
-	if (device.platform == 'Android') {
-		fname = '/android_asset/www/' + fname;
-	}
-	console.log("fname2: " + fname);
-	
-	var mediaRes = new Media(fname,success,error_error);
-	mediaRes.play();
+	var fnames = ["HeyHey", "HeyQuitIt", "Stoooop", "WhatWhat"];
+	var fname = fnames[Math.floor(Math.random() * fnames.length)];
+	var the_video = document.getElementById("htmlvideo_"+fname);
+	the_video.load();
+    the_video.play();
 	console.log("mediaRes.play()");
 
 }
+/*
 function success() { console.log("working");} 
 function error_error(e) {
 	console.log("e.message: " + e);
